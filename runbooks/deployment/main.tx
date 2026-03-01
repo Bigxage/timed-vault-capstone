@@ -1,0 +1,15 @@
+################################################################
+# Manage timed_vault_capstone deployment through Crypto Infrastructure as Code
+################################################################
+
+addon "svm" {
+    rpc_api_url = input.rpc_api_url
+    network_id = input.network_id
+}
+
+action "deploy_timed_vault_capstone" "svm::deploy_program" {
+    description = "Deploy timed_vault_capstone program"
+    program = svm::get_program_from_anchor_project("timed_vault_capstone") 
+    authority = signer.authority
+    payer = signer.payer
+}
